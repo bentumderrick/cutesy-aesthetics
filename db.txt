@@ -1,0 +1,11 @@
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    display_name VARCHAR(100) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    phone VARCHAR(20),
+    bio TEXT,
+    profile_picture VARCHAR(255) DEFAULT 'default-avatar.png',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
