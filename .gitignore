@@ -1,0 +1,6 @@
+# Ignore the secret database configuration file
+private/.env
+
+# Ignore any system or temporary environment files
+.env
+.env.local
