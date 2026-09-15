@@ -1,0 +1,824 @@
+/* =========================================================
+   GALLERY PAGE
+   Dark cozy panel + masonry layout (CSS multi-column, not Grid,
+   so images keep their natural heights and flow Pinterest-style)
+   ========================================================= */
+
+.customer-gallery {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 35px 30px 60px;
+
+    background: #04022A;
+    border-radius: 28px;
+    color: #ffffff;
+}
+
+
+/* ---------------------------------------------------------
+   HERO
+   --------------------------------------------------------- */
+
+.gallery-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    padding: 42px 45px;
+    margin-bottom: 28px;
+
+    border-radius: 28px;
+
+    background: linear-gradient(135deg, rgba(255, 235, 245, 0.95), rgba(250, 240, 255, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 15px 45px rgba(120, 80, 120, 0.10);
+
+    overflow: hidden;
+    color: #2d2530;
+}
+
+.gallery-hero::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    top: -90px;
+    right: 150px;
+}
+
+.gallery-hero::after {
+    content: "✦";
+    position: absolute;
+    right: 30px;
+    bottom: 15px;
+    font-size: 28px;
+    opacity: 0.35;
+}
+
+.gallery-hero-text {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+}
+
+.gallery-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    opacity: 0.75;
+}
+
+.gallery-hero h1 {
+    margin: 0 0 10px;
+    font-family: "Fredoka", sans-serif;
+    font-size: clamp(34px, 5vw, 55px);
+    font-weight: 700;
+    line-height: 1.05;
+}
+
+.gallery-hero p {
+    max-width: 620px;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    opacity: 0.75;
+}
+
+.gallery-hero-icon {
+    position: relative;
+    z-index: 1;
+    width: 105px;
+    height: 105px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 10px 30px rgba(120, 80, 120, 0.10);
+    font-size: 42px;
+}
+
+
+/* ---------------------------------------------------------
+   FILTER
+   --------------------------------------------------------- */
+
+.gallery-filter-wrapper {
+    margin-bottom: 30px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.gallery-filter-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: max-content;
+}
+
+.gallery-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 19px;
+    border: 1px solid rgba(100, 80, 100, 0.12);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #2d2530;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.gallery-filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(120, 80, 120, 0.10);
+}
+
+.gallery-filter-btn.active {
+    background: #2d2530;
+    color: #ffffff;
+    border-color: #2d2530;
+    box-shadow: 0 7px 20px rgba(45, 37, 48, 0.18);
+}
+
+
+/* ---------------------------------------------------------
+   GRID — MASONRY LAYOUT (CSS multi-column, no fixed aspect ratio)
+   --------------------------------------------------------- */
+
+.gallery-grid {
+    column-width: 240px;
+    column-gap: 22px;
+}
+
+.gallery-card {
+    background: #ffffff;
+    color: #2d2530;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(100, 80, 100, 0.08);
+    box-shadow: 0 8px 30px rgba(80, 50, 80, 0.07);
+
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 22px;
+
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    vertical-align: top;
+}
+
+.gallery-card.show {
+    animation: galleryCardAppear 0.35s ease both;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(80, 50, 80, 0.13);
+}
+
+@keyframes galleryCardAppear {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ---------------------------------------------------------
+   IMAGE — natural height, with a shimmer skeleton until loaded
+   --------------------------------------------------------- */
+
+.gallery-image-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #f4f1f4;
+    /* No aspect-ratio: each image keeps its natural height */
+}
+
+.gallery-image-wrapper.is-loading {
+    min-height: 160px;
+}
+
+.gallery-image-wrapper.is-loading::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        100deg,
+        #f0ecf4 30%,
+        #fbf7ff 50%,
+        #f0ecf4 70%
+    );
+    background-size: 200% 100%;
+    animation: galleryShimmer 1.3s ease-in-out infinite;
+}
+
+@keyframes galleryShimmer {
+    0%   { background-position: 150% 0; }
+    100% { background-position: -50% 0; }
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.45s ease;
+}
+
+.gallery-image.is-loaded {
+    opacity: 1;
+}
+
+.gallery-card:hover .gallery-image {
+    transform: scale(1.035);
+}
+
+
+/* ---------------------------------------------------------
+   IMAGE OVERLAY
+   --------------------------------------------------------- */
+
+.gallery-image-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(30, 20, 30, 0.25);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.gallery-card:hover .gallery-image-overlay {
+    opacity: 1;
+}
+
+.gallery-view-btn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
+}
+
+.gallery-view-btn:hover {
+    transform: scale(1.08);
+}
+
+
+/* ---------------------------------------------------------
+   CARD INFO — title + availability, no price
+   --------------------------------------------------------- */
+
+.gallery-card-info {
+    padding: 16px 17px 18px;
+}
+
+.gallery-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.gallery-category {
+    display: inline-flex;
+    padding: 5px 10px;
+    border-radius: 30px;
+    background: #f6edf4;
+    color: #2d2530;
+    font-family: "Poppins", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.gallery-share-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #2d2530;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-share-btn:hover {
+    background: #f5edf4;
+    transform: scale(1.08);
+}
+
+.gallery-title {
+    margin: 12px 0 0;
+    font-family: "Fredoka", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.gallery-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 5px 11px;
+    border-radius: 30px;
+    font-family: "Poppins", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.gallery-status::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.gallery-status--available {
+    background: #e9f8ee;
+    color: #2f9e5c;
+}
+
+.gallery-status--not-for-sale {
+    background: #f1eef5;
+    color: #7c7188;
+}
+
+.gallery-status--sold {
+    background: #faeceb;
+    color: #c1584b;
+}
+
+.gallery-status--out-of-stock {
+    background: #fdf3e6;
+    color: #c68a2e;
+}
+
+
+/* ---------------------------------------------------------
+   EMPTY STATE
+   --------------------------------------------------------- */
+
+.gallery-empty {
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #fff8fc, #f9f5ff);
+    border: 1px dashed rgba(100, 80, 100, 0.15);
+    color: #2d2530;
+}
+
+.gallery-empty-icon {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    background: #ffffff;
+    font-size: 30px;
+    box-shadow: 0 8px 25px rgba(100, 70, 100, 0.08);
+}
+
+.gallery-empty h2 {
+    margin: 0 0 7px;
+    font-family: "Fredoka", sans-serif;
+    font-size: 25px;
+}
+
+.gallery-empty p {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+
+/* ---------------------------------------------------------
+   MODAL — image + info panel
+   --------------------------------------------------------- */
+
+.gallery-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.gallery-modal.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.gallery-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 15, 22, 0.82);
+    backdrop-filter: blur(7px);
+}
+
+.gallery-modal-content {
+    position: relative;
+    z-index: 1;
+    width: min(920px, 95vw);
+    max-height: 92vh;
+
+    display: flex;
+    background: #fffaf6;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
+}
+
+.gallery-modal-image-wrap {
+    flex: 1.2;
+    min-width: 0;
+    background: #f4f1f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-modal-content img {
+    display: block;
+    width: 100%;
+    max-height: 88vh;
+    object-fit: contain;
+}
+
+.gallery-modal-info {
+    flex: 1;
+    min-width: 260px;
+    padding: 34px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    color: #2d2530;
+}
+
+.gallery-modal-info h2 {
+    margin: 4px 0 0;
+    font-family: "Fredoka", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.gallery-modal-desc {
+    margin: 4px 0 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    line-height: 1.75;
+    opacity: 0.8;
+}
+
+.gallery-modal-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(100, 80, 100, 0.12);
+}
+
+.gallery-modal-price {
+    font-family: "Fredoka", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.gallery-modal-stock {
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+.gallery-modal-buy-btn {
+    margin-top: 6px;
+    padding: 13px 20px;
+    border: 0;
+    border-radius: 16px;
+    background: #2d2530;
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.gallery-modal-buy-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.88;
+}
+
+.gallery-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #2d2530;
+    cursor: pointer;
+    font-size: 17px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-modal-open {
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 850px) {
+
+    .customer-gallery {
+        padding: 25px 20px 50px;
+    }
+
+    .gallery-hero {
+        padding: 32px 28px;
+    }
+
+    .gallery-hero-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 24px;
+        font-size: 32px;
+    }
+
+    .gallery-grid {
+        column-width: 200px;
+        column-gap: 16px;
+    }
+
+    .gallery-modal-content {
+        flex-direction: column;
+        width: min(920px, 94vw);
+        max-height: 94vh;
+        overflow-y: auto;
+    }
+
+    .gallery-modal-image-wrap {
+        flex: none;
+        max-height: 55vh;
+    }
+
+    .gallery-modal-content img {
+        max-height: 55vh;
+    }
+}
+
+@media (max-width: 560px) {
+
+    .customer-gallery {
+        width: 100%;
+        padding: 15px 10px 35px;
+        border-radius: 18px;
+    }
+
+    .gallery-hero {
+        padding: 24px 18px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+    .gallery-hero-icon {
+        display: none;
+    }
+
+    .gallery-hero h1 {
+        font-size: 30px;
+    }
+
+    .gallery-hero p {
+        font-size: 12px;
+        line-height: 1.65;
+    }
+
+    .gallery-filter-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .gallery-filter {
+        gap: 7px;
+    }
+
+    .gallery-filter-btn {
+        padding: 9px 12px;
+        font-size: 11px;
+    }
+
+    /*
+     * Keep Masonry, but force exactly two columns on phones.
+     * This replaces the old 160px column-width rule, which can
+     * collapse unpredictably on narrow screens.
+     */
+    .gallery-grid {
+        column-count: 2;
+        column-width: auto;
+        column-gap: 10px;
+    }
+
+    .gallery-card {
+        width: 100%;
+        border-radius: 14px;
+        margin-bottom: 10px;
+    }
+
+    .gallery-card-info {
+        padding: 10px;
+    }
+
+    .gallery-card-top {
+        gap: 5px;
+    }
+
+    .gallery-category {
+        max-width: calc(100% - 36px);
+        padding: 4px 7px;
+        font-size: 8px;
+    }
+
+    .gallery-share-btn {
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+    }
+
+    .gallery-title {
+        margin-top: 9px;
+        font-size: 12px;
+    }
+
+    .gallery-status {
+        margin-top: 8px;
+        padding: 4px 8px;
+        font-size: 9px;
+    }
+
+    /*
+     * Touch screens do not have reliable :hover behavior.
+     * Keep the expand button visible instead of hiding the whole
+     * overlay on mobile.
+     */
+    .gallery-image-overlay {
+        display: flex;
+        opacity: 1;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 8px;
+        background: linear-gradient(
+            to top,
+            rgba(20, 15, 22, 0.28),
+            transparent 45%
+        );
+        pointer-events: none;
+    }
+
+    .gallery-view-btn {
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        pointer-events: auto;
+        font-size: 15px;
+        box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-modal {
+        padding: 10px;
+    }
+
+    .gallery-modal-content {
+        width: 100%;
+        max-height: 96vh;
+        border-radius: 18px;
+    }
+
+    .gallery-modal-image-wrap {
+        max-height: 52vh;
+    }
+
+    .gallery-modal-content img {
+        max-height: 52vh;
+    }
+
+    .gallery-modal-info {
+        min-width: 0;
+        padding: 20px 16px;
+    }
+
+    .gallery-modal-info h2 {
+        font-size: 21px;
+    }
+
+    .gallery-modal-desc {
+        font-size: 13px;
+    }
+
+    .gallery-modal-close {
+        top: 8px;
+        right: 8px;
+        width: 38px;
+        height: 38px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .customer-gallery {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    .gallery-grid {
+        column-gap: 8px;
+    }
+
+    .gallery-card-info {
+        padding: 8px;
+    }
+
+    .gallery-title {
+        font-size: 11px;
+    }
+
+    .gallery-status {
+        font-size: 8px;
+    }
+
+    .gallery-view-btn {
+        width: 38px;
+        height: 38px;
+    }
+}

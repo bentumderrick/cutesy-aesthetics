@@ -1,0 +1,872 @@
+/*dashboard.css*/
+:root {
+    --color1: #e2afbf;
+    --deepbg: #fcebec;
+    --nav: #fdf8f8;
+   
+    --reddish: #dc5c7c;
+    --border: #f7eeef;
+    --brownish: #b59097;
+
+    /* Variables new to this file (base palette + card-bg/text-color/hover1/etc. come from style.css) */
+    --text-muted: #888;
+    --text-muted-2: #666;
+    --divider: #eee;
+    --divider-soft: #f1f1f1;
+    --success-bg: #dff5df;
+    --success-text: #2f7d32;
+    --warning-bg: #fff0c7;
+    --warning-text: #996800;
+    --welcome-heading: #5c3566;
+    --spinner-track: #f3f3f3;
+    --spinner-red: red;
+    --spinner-green: green;
+    --spinner-violet: violet;
+    --spinner-blue: blue;
+    --spinner-transparent: transparent;
+}
+* {
+    font-family: "Poppins", Sans-Serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+   
+}
+
+.h1-welcome span {
+    display: inline-block;
+    width: 50px;
+    transform-origin: 70% 70%;
+    text-shadow: 10px 5px 10px;
+    transform: rotate(0deg);
+    animation: 1s wave ease-in-out 3;
+}
+@keyframes wave {
+    0% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(30deg);
+    }
+    100% {
+        transform: rotate(-10deg);
+    }
+}
+.sidebar {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 30px;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+.teddy{
+  border-radius: 20px;
+}
+/* .right-conner-btn now lives only in default.css to avoid the two
+   copies drifting out of sync */
+.cutesy {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    color: var(--reddish);
+    font-size: 2rem !important;
+}
+.line {
+    position: relative;
+    height: 2px;
+}
+
+.line::before,
+.line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 2px;
+    background: var(--color1);
+}
+
+.line::before {
+    left: 0;
+    transform-origin: left;
+    animation: leftLine 2s infinite alternate;
+}
+
+.line::after {
+    right: 0;
+    transform-origin: right;
+    animation: rightLine 2s infinite alternate;
+}
+
+@keyframes leftLine {
+    0% {
+        transform: scaleX(0);
+    }
+    40% {
+        transform: scaleX(1);
+    }
+    60% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(0);
+    }
+}
+@keyframes rightLine {
+    0% {
+        transform: scaleX(0);
+    }
+    40% {
+        transform: scaleX(1);
+    }
+    60% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(0);
+    }
+}
+header {
+    display: flex;
+    flex-direction: row;
+    padding-right: 30px;
+    padding-left: 30px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    box-sizing: border-box;
+    width: 100%;
+}
+.compliment-cutesy {
+    color: var(--brownish);
+    margin-top: -10px;
+    margin-left: 10%;
+}
+.brand-name {
+    flex-shrink: 0;
+}
+.circle {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border-left: 1px solid
+        linear-gradient(45deg, var(--spinner-red), var(--spinner-green));
+    border-right: 1px solid var(--spinner-violet);
+    border-top: 1px solid var(--spinner-blue);
+    border-bottom: 1px solid var(--spinner-transparent);
+    animation: 2s load infinite;
+}
+.load::after {
+    content: "";
+    width: 20px;
+    height: 5px;
+    display: block;
+    transition: 0.5s all ease-in-out;
+    background: var(--spinner-red);
+    animation: 2s load infinite;
+}
+.load {
+    /* 1. Create a perfect square */
+    width: 40px;
+    height: 40px;
+
+    /* 2. Turn the square into a circle */
+    border-radius: 50%;
+
+    /* 3. Create the spinner ring (light base, dark animated part) */
+    border: 4px solid var(--spinner-track);
+    border-top: 4px solid var(--spinner-red);
+
+    /* 4. Link the animation (runs infinitely, smoothly, over 1 second) */
+    animation: spin 1s linear infinite;
+}
+
+/* 5. Define the smooth 360-degree rotation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes load {
+    100% {
+        transition: 0.5s all ease-in-out;
+        transform: rotate(350deg);
+    }
+}
+
+.right-conner-options {
+
+    padding: 15px;
+    display: flex;
+    flex-shrink: 0;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+.right-conner-options .right-conner-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    cursor: pointer;
+
+}
+.search-field {
+    outline: none;
+    border-radius: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--search-border);
+    height: 48px;
+    padding: 5px 40px 5px 25px;
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+.active {
+    background: var(--deepbg);
+}
+.search-box {
+    position: relative;
+    flex: 1;
+    max-width: 700px;
+}
+.search-box span {
+    position: absolute;
+    right: 15px;
+    top: 40% !important;
+    transform: translateY(-50%);
+    color: var(--color1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-size: 22px;
+}
+
+.aside-sidebar {
+    margin-left: 30px;
+    background: var(--nav);
+    min-height: 100dvh;
+    width: 290px;
+    align-items: stretch;
+    display: flex;
+    border: 1px solid var(--border);
+    flex-direction: column;
+    justify-content: space-start;
+    gap: 20px;
+}
+main {
+    flex: 1;
+    padding: 35px;
+    box-sizing: border-box;
+}
+
+a {
+    display: block;
+    padding: 15px;
+    border-radius: 10px;
+    color: var(--text-color);
+    text-decoration: none;
+    position: relative;
+}
+a:hover {
+    background: var(--deepbg);
+}
+s .active {
+    background: var(--deepbg);
+    color: var(--reddish);
+    font-weight: 600;
+}
+a {
+    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Adjusts the spacing between the icon and the text */
+}
+.logout {
+    color: var(--reddish);
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+}
+.stats-overview {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.stats-single-div span {
+    padding: 10px;
+    color: var(--reddish);
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    font-size: 2rem;
+    background: var(--deepbg);
+}
+.stats-single-div i {
+    padding: 10px;
+    color: var(--reddish);
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    font-size: 2rem;
+    background: var(--deepbg);
+}
+.stats-single-div {
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.promo-box {
+    width: 200px;
+    background: var(--deepbg);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+.promo-box img {
+    width: 190px;
+}
+.stats-num {
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+.welcome-banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-radius: 15px;
+    padding: 25px;
+    gap: 15px;
+    background: var(--deepbg);
+}
+.welcome-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.welcome-text {
+    flex: 1;
+}
+
+.welcome-image img {
+    width: 300px;
+    max-width: 100%;
+}
+.welcome-banner > div:last-child {
+    min-width: 180px;
+}
+.dashboard-grid section {
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 10px;
+}
+section span {
+    color: var(--reddish);
+    padding: 5px;
+}
+.quick-actions {
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 10px;
+}
+.dashboard-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.grid-head {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.favorite-info span {
+    width: 35px;
+    height: 35px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: var(--deepbg);
+    color: var(--reddish);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.favorite-info span:hover {
+    background: var(--reddish);
+    color: var(--text-on-accent);
+}
+.recent-orders,
+.saved-favorites {
+    background: var(--card-bg);
+    border: 1px solid var(--divider);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.grid-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.grid-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view-all {
+    color: var(--reddish);
+    text-decoration: none;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--divider-soft);
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+.invite-btn {
+    width: 80%;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    background: var(--reddish);
+    color: var(--text-on-accent);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.invite-btn:hover {
+    background: var(--hover1);
+    transform: translateY(-2px);
+}
+.order-item img {
+    width: 65px;
+    height: 65px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.order-details {
+    flex: 1;
+}
+
+.order-details h4 {
+    margin: 0;
+}
+
+.order-details p {
+    margin-top: 5px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.delivered {
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+.shipped {
+    background: var(--warning-bg);
+    color: var(--warning-text);
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+}
+
+.bottom-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: var(--reddish);
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+.favorite-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.favorite-card img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.favorite-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+.favorite-info span:hover {
+    transform: scale(1.1);
+}
+.favorite-info span {
+    color: var(--reddish);
+}
+.quick-actions {
+    background: var(--card-bg);
+    border: 1px solid var(--deepbg);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.quick-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px;
+    border-radius: 12px;
+    background: var(--deepbg);
+    transition: 0.3s;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.quick-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--divider);
+}
+
+.quick-card span {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--card-bg);
+    color: var(--reddish);
+    font-size: 30px;
+    flex-shrink: 0;
+}
+
+.quick-card h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.quick-card p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    color: var(--text-muted-2);
+}
+.welcome-text h1 {
+    font-family: "Caveat", cursive;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--welcome-heading);
+}
+.right-conner-options img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+.right-conner-options .material-symbols-outlined {
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.right-conner-options .material-symbols-outlined:hover {
+    color: var(--reddish);
+    transform: scale(1.1);
+}
+/* ============================================ */
+/* ⚡ FORCE GREEN TERMINAL STYLING ⚡ */
+/* ============================================ */
+.menu.tech-portal {
+    background: var(--tech-bg) !important; /* Deep void green */
+    color: var(--tech-green) !important; /* Neon text */
+    border: 1px solid var(--tech-border-hover) !important;
+    display: flex !important; /* Aligns text and lighting bolt inline */
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+/* Force the icon inside this menu to match the green styling */
+.menu.tech-portal i.tech-icon {
+    color: var(--tech-green) !important;
+    background: transparent !important; /* Removes your global round icon style */
+}
+
+/* ============================================ */
+/* ⚡ HIGH-VOLTAGE GLOW HOVER STATES ⚡ */
+/* ============================================ */
+.menu.tech-portal:hover {
+    background: var(--tech-hover-bg) !important;
+    color: var(--tech-green) !important;
+    border-color: var(--tech-green) !important;
+    transition:
+        0.5s border-color,
+        box-shadow ease-in-out;
+    box-shadow:
+        0 0 15px var(--tech-glow-dark),
+        0 0 30px var(--tech-border) !important;
+}
+
+/* Hide your rainbow bottom border effect exclusively for this menu button */
+.menu.tech-portal::after {
+    display: none !important;
+}
+
+/* ============================================ */
+/* ⚡ THE ANIMATED LIGHTNING SPARK ⚡ */
+/* ============================================ */
+.lightning-bolt {
+    display: inline-block;
+    margin-left: auto; /* Pushes the bolt cleanly to the right edge */
+    font-size: 1.2rem;
+    animation: lightning-strike 1.5s infinite linear;
+}
+
+/* Erratic electrical surge effect animation rules */
+@keyframes lightning-strike {
+    0%,
+    40%,
+    60%,
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0px var(--tech-green)) brightness(1);
+        opacity: 1;
+    }
+    45% {
+        transform: scale(1.3) rotate(-10deg);
+        filter: drop-shadow(0 0 10px var(--tech-green)) brightness(3);
+        opacity: 0.2;
+    }
+    48% {
+        transform: scale(1.1) rotate(5deg);
+        filter: drop-shadow(0 0 15px var(--tech-white)) brightness(4);
+        opacity: 1;
+    }
+    52% {
+        transform: scale(1.4);
+        filter: drop-shadow(0 0 2px var(--tech-green)) brightness(1);
+        opacity: 0.4;
+    }
+    55% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 12px var(--tech-green)) brightness(3);
+        opacity: 1;
+    }
+}
+/* Relative anchor box container */
+.lightning-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: visible; /* Allows the lightning glow to pop out */
+}
+
+/* ============================================ */
+/* ⚡ THE PHYSICAL ZIGZAG LIGHTNING LINES ⚡ */
+/* ============================================ */
+.bolt-line {
+    position: absolute;
+    background: var(--tech-green);
+    opacity: 0; /* Hidden by default */
+    pointer-events: none; /* Mouse can click straight through it */
+    z-index: 10;
+    mix-blend-mode: screen;
+}
+
+/* Top Horizontal Zigzag Arc */
+.top-bolt {
+    top: -4px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    /* This creates a sharp vector zigzag shape */
+    clip-path: polygon(
+        0% 50%,
+        15% 20%,
+        30% 70%,
+        45% 10%,
+        65% 80%,
+        80% 30%,
+        90% 75%,
+        100% 50%,
+        90% 60%,
+        80% 40%,
+        65% 90%,
+        45% 20%,
+        30% 85%,
+        15% 35%
+    );
+}
+
+/* Bottom Horizontal Zigzag Arc */
+.bottom-bolt {
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    clip-path: polygon(
+        0% 50%,
+        20% 70%,
+        35% 30%,
+        50% 80%,
+        70% 20%,
+        85% 70%,
+        100% 50%,
+        85% 60%,
+        70% 10%,
+        50% 90%,
+        35% 20%,
+        20% 80%
+    );
+}
+
+/* Left Vertical Zigzag Arc */
+.left-bolt {
+    top: 0;
+    left: -4px;
+    width: 8px;
+    height: 100%;
+    clip-path: polygon(
+        50% 0%,
+        30% 20%,
+        70% 40%,
+        20% 55%,
+        80% 75%,
+        30% 90%,
+        50% 100%,
+        40% 90%,
+        90% 75%,
+        10% 55%,
+        80% 40%,
+        40% 20%
+    );
+}
+
+/* Right Vertical Zigzag Arc */
+.right-bolt {
+    top: 0;
+    right: -4px;
+    width: 8px;
+    height: 100%;
+    clip-path: polygon(
+        50% 0%,
+        70% 15%,
+        30% 35%,
+        80% 50%,
+        20% 70%,
+        70% 85%,
+        50% 100%,
+        60% 85%,
+        10% 70%,
+        90% 50%,
+        40% 35%,
+        80% 15%
+    );
+}
+
+/* ============================================ */
+/* ⚡ HOVER ENGINE ACTIVATION & HIGH FREQUENCY CRACKLE ⚡ */
+/* ============================================ */
+.lightning-wrapper:hover .bolt-line {
+    animation: zigzag-crackle 0.4s infinite steps(2);
+}
+
+@keyframes zigzag-crackle {
+    0%,
+    100% {
+        opacity: 0;
+        transform: scaleX(1) scaleY(1);
+        filter: drop-shadow(0 0 2px var(--tech-green)) brightness(1);
+    }
+    20% {
+        opacity: 1;
+        /* Flipping axes keeps the lightning completely unpredictable */
+        transform: scaleX(-1) scaleY(1.1);
+        filter: drop-shadow(0 0 6px var(--tech-green))
+            drop-shadow(0 0 12px var(--tech-white)) brightness(3);
+    }
+    40% {
+        opacity: 0.2;
+        transform: scaleX(1.1) scaleY(-1);
+        filter: drop-shadow(0 0 2px var(--tech-green));
+    }
+    60% {
+        opacity: 1;
+        transform: scaleX(-1.05) scaleY(-1.05);
+        filter: drop-shadow(0 0 8px var(--tech-green))
+            drop-shadow(0 0 15px var(--tech-green)) brightness(4);
+    }
+    80% {
+        opacity: 0.1;
+        transform: scaleX(1) scaleY(1);
+    }
+}

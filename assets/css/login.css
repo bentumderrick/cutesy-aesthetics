@@ -1,0 +1,336 @@
+*,
+*::before,
+*::after {
+box-sizing: border-box;
+}
+
+body{
+margin: 0;
+padding: 0;
+background:#f8e7ed;
+}
+.flex-container{
+display: flex;
+border-radius: 15px;
+background: white;
+width: 100%;
+max-width: 1100px;
+min-height: 550px;
+overflow: hidden;
+box-shadow: 0 15px 40px rgba(0,0,0,.12);
+}
+form{
+    width: 100%;
+    max-width: 420px;
+}
+.d4{
+position: relative;
+}
+.login-img{
+object-fit: cover;
+border-start-start-radius: 15px;
+border-end-start-radius: 15px;
+display: block;
+padding: 3px;
+width: 100%;
+height: 100%;
+}
+/* 1. Icon turns pink when input has text */
+.input-box input:not(:placeholder-shown) ~ i {
+  color: #e56b91;
+  transition: 0.7s all ease-in-out;
+}
+
+/* 2. Text inside input turns pink when it has text */
+.input-box input:not(:placeholder-shown) {
+  color: #e56b91;
+  transition: 0.7s all ease-in-out;
+}
+
+/* 3. Border turns pink when: focused OR has text */
+.input-box:focus-within,
+.input-box:has(input:not(:placeholder-shown)) {
+  border: 1px solid #e56b91;
+  transition: 0.7s all ease-in-out;
+  border-radius: 10px;
+}
+.form-section{
+flex:1;
+max-width:500px;
+width:100%;
+padding:30px;
+margin:auto;
+
+}
+.form-header{
+text-align: center;
+}
+.input-box{
+    position: relative;
+    width: 100%;
+}
+.hero-content{
+position: absolute;
+    top: 45px;
+    left: 45px;
+    right: 45px;
+
+z-index: 2;
+
+
+}
+.brand-name{
+    font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+font-size: 1.6rem !important;
+ 
+}
+.input-box i{
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+.check{
+accent-color: #e56b91;
+
+}
+.input-box input{
+outline: none;
+    width: 100%;
+    padding: 14px 14px 14px 45px; /* Left padding makes room for icon */
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+.form-body{
+display: flex;
+flex-direction: column;
+gap: 20px;
+justify-content:center;
+}
+.form-options{
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+}
+.divider::before, .divider::after{
+content: "";
+width: 80px;
+height: 2px;
+background: #F2B8C6;
+}
+.divider span{
+color: #E56B91;
+}
+.divider{
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+
+}
+
+label{display: inline-block;}
+.i1{
+display: flex;
+width: 100%;
+flex-direction: column;
+gap: 10px;
+}
+.or-divider::before, .or-divider::after{
+content: "";
+width: 80px;
+flex: 1;
+height: 2px;
+background: #F2B8C6;
+}
+.or-divider span{
+color: #E56B91;
+}
+.or-divider{
+display: flex;
+font-size: 1.2rem;
+align-items: center;
+justify-content: center;
+gap: 12px;
+
+}
+input{
+outline: none;
+padding: 15px;
+transition: 0.7s all ease-in-out;
+border-radius: 10px;
+border: 1px solid #f8e7ed;
+}
+a{
+color:#e56b91;
+}
+button{
+cursor: pointer;
+transition: 1s all ease-in-out;
+}
+em{
+color: #e56b91;
+}
+.login:hover{
+  background: #A64B62;
+  transition: 0.7s all ease-in-out;
+}
+button{
+height: 45px;
+outline: none;
+border-radius: 10px;
+border: 1px solid #E56B91;
+ font-family: "Poppins", sans-serif;
+ background: none;
+}
+.error-txt{
+  text-align: center;
+}
+.error-container{
+   position: fixed;
+  display: flex;
+  z-index: 99;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  min-width: 100dvw;
+  opacity: 1;
+  transition: 0.5s all ease-in-out;
+  backdrop-filter: blur(20px);
+}
+.error-animation{
+  animation: 1s fade ease-in-out both;
+}
+@keyframes fade{
+  95%{
+    opacity: 0;
+    transition: 0.5s all ease-in-out;
+backdrop-filter: blur(5px)
+  }
+  100%{
+    backdrop-filter: blur(0px);
+        z-index: -99;
+   visibility: hidden;
+    
+  }
+}
+.error-box{
+  transition: 0.5s all ease-in-out;
+  background: #E56B91;
+  width: auto;
+  padding: 10px;
+  border-radius: 20px;
+}
+.inline{
+  display: flex;
+  gap: 5px;
+  justify-content: flex-start;
+}
+.login{
+  background: #E56B91;
+  color: white;
+ 
+}
+.hero-content span{
+    color:#E56B91;
+}
+.hero-content h1{
+color:#5B3430;
+   font-family: "Raleway", sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero-content p{
+    color:#6F5B5B;
+    font-size:1.2rem;
+    
+    max-width:340px;
+    line-height:1.6;
+}
+
+.image-side{
+
+overflow: hidden;
+position: relative;
+width: 50%;
+}
+.check{
+border-radius: 20px;
+
+}
+.main-contain{
+padding: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100dvh;
+width: 100%;
+
+}
+.input-box:focus-within i{
+  transition: 0.7s all ease-in-out;
+  color: #e56b91;
+  
+}
+.input-box:focus-within input{
+  transition: 0.7s all ease-in-out;
+  border: 1px solid #e56b91;
+}
+.input-box input {
+  outline: none;
+}
+
+.input-box:focus-within {
+  border: 1px solid #e56b91;
+  box-shadow: 0 0 0 3px rgba(229, 107, 145, 0.2); /* soft pink glow instead */
+  border-radius: 10px;
+  transition: 0.2s box-shadow ease;
+}
+i{
+  transition: 0.7s all ease-in-out;
+}
+@media (max-width:768px){
+
+.flex-container{
+    flex-direction:column;
+    min-height: 350px;
+}
+.image-side{
+  flex: 1 !important;
+  width: 100% !important;
+}
+}
+@media (max-width:600px){
+
+.image-side{
+    display:none;
+}
+
+.form-section{
+    padding: 24px 20px;
+}
+
+}
+@media (max-width:375px){
+
+.main-contain{
+    padding: 12px;
+}
+
+.form-section{
+    padding: 20px 16px;
+}
+
+.hero-content h1{
+    font-size: 2.2rem;
+}
+
+}

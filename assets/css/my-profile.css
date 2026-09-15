@@ -1,0 +1,699 @@
+/* Variables new to this file (base palette comes from style.css) */
+:root {
+    --input-border: #ccc;
+    --focus-shadow: rgba(229, 107, 145, 0.2);
+    --reddish-shadow: rgba(199, 77, 109, 0.2);
+    --divider: #eee;
+    --text-muted: #777;
+    --status-active: #2e9b50;
+    --cancel-hover: #ece3e5;
+    --card-bg-translucent: rgba(255, 255, 255, 0.95);
+    --dot-blue: blue;
+    --dot-violet: violet;
+    --dot-red: red;
+
+    /* Generic black-alpha scale, used for borders/shadows/overlays */
+    --black-08: rgba(0, 0, 0, 0.08);
+    --black-15: rgba(0, 0, 0, 0.15);
+    --black-2: rgba(0, 0, 0, 0.2);
+    --black-25: rgba(0, 0, 0, 0.25);
+    --black-3: rgba(0, 0, 0, 0.3);
+    --black-35: rgba(0, 0, 0, 0.35);
+}
+
+/* Material Symbols baseline reset — without this the icon font can render
+   as literal text (e.g. "photo_camera") or an oversized/misaligned glyph,
+   which is what was showing as a "broken" camera icon. If the icon still
+   doesn't appear after this, double check the <link> for Material Symbols
+   Outlined is actually loading in <head>. */
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-flex;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.profile-edit {
+    width: 300px;
+    max-width: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+}
+.iti {
+    width: 100%;
+}
+.account-overview div{
+  transition: 0.5s all ease-in-out;
+  transform: scale(1);
+}
+/* Hover-scale only for devices that actually support hover (mouse/trackpad).
+   On touch devices this used to get "stuck" scaled-up after a tap. */
+@media (hover: hover) and (pointer: fine) {
+  .account-overview div:hover{
+    transform: scale(1.1);
+    transition: 0.5s all ease-in-out;
+  }
+}
+.iti input {
+    width: 100%;
+    height: 50px;
+    border-radius: 12px;
+    border: 1px solid var(--input-border);
+    font-size: 16px;
+    padding-left: 90px !important;
+    outline: none;
+}
+
+.iti input:focus {
+    border-color: var(--selection-bg);
+    box-shadow: 0 0 0 3px var(--focus-shadow);
+}
+
+.iti__selected-country {
+    height: 50px;
+    border-radius: 12px 0 0 12px;
+}
+
+.iti__country-list {
+    border-radius: 12px;
+    box-shadow: 0 8px 20px var(--black-15);
+    z-index: 99999;
+}
+
+.edit {
+    outline: none;
+    border-radius: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 48px;
+    padding: 5px 40px 5px 25px;
+    border: 1px solid var(--black-2);
+    font-size: 1rem;
+    
+}
+.edit-container {
+    display: flex;
+    gap: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.btn-contain {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    flex-direction: row;
+    gap: 20px;
+}
+.edit-appy-btn:active {
+    transform: scale(0.98);
+}
+.edit {
+    transition: 0.25s;
+}
+.edit:focus {
+    border-color: var(--reddish);
+    box-shadow: 0 0 0 3px var(--reddish-shadow);
+}
+.edit-appy-btn {
+    width: 80%;
+    height: 50px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 12px;
+    outline: none;
+    background: var(--reddish);
+    color: var(--text-on-accent);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    box-shadow: 0 4px 12px var(--reddish-shadow);
+
+    cursor: pointer;
+    transition: 0.3s;
+    flex: 1;
+}
+.edit-appy-btn:hover {
+    background: var(--hover1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--reddish-shadow);
+}
+
+/* Cancel is a reset button, not the primary action — give it a quieter look
+   so it doesn't fight visually with Save Changes for the same weight. */
+button[type="reset"].edit-appy-btn {
+    background: var(--border, var(--black-08));
+    color: var(--brownish, var(--reddish));
+    box-shadow: none;
+}
+button[type="reset"].edit-appy-btn:hover {
+    background: var(--cancel-hover);
+    box-shadow: none;
+}
+.main-edit-section {
+    max-width: 700px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 15px;
+    border-radius: 15px;
+    width: 100%;
+}
+.edit-container > div {
+    flex: 1;
+    min-width: 250px;
+}
+.profile-area {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.more-info {
+    align-self: flex-start;
+    gap: 20px;
+    display: flex;
+
+    flex-direction: column;
+    width: 400px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+    border: 1px solid var(--input-border);
+}
+.change-picture {
+    height: 42px;
+    padding: 0 18px;
+    border-radius: 10px;
+    outline: none;
+    width: fit-content;
+    background: var(--reddish-shadow);
+    color: var(--reddish);
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: 0.25s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.change-picture:hover {
+    background: var(--reddish);
+    color: var(--text-on-accent);
+    transform: translateY(-1px);
+}
+.profile-picture-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.profile-edit {
+    width: 300px;
+    display: block;
+    border-radius: 15px;
+    transition: 0.35s;
+}
+
+.profile-picture-wrapper:hover .profile-edit {
+    filter: brightness(0.8);
+}
+
+/* The actual file-picker input must stay invisible — it's triggered via the
+   <label for="profile_picture">. Some mobile browsers don't reliably respect
+   the bare `hidden` attribute once other rules are in play, so this backs it
+   up explicitly and keeps it accessible (not display:none for screen readers
+   that need it focusable would normally use a visually-hidden pattern, but
+   since this control is always reachable via the label/camera icon, a hard
+   hide is fine here). */
+#profile_picture[hidden] {
+    display: none !important;
+}
+
+.camera-btn {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: var(--card-bg-translucent);
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--reddish);
+
+    box-shadow: 0 4px 15px var(--black-25);
+
+    transition: 0.3s;
+}
+
+.profile-picture-wrapper:hover .camera-btn {
+    transform: scale(1.08);
+}
+
+.camera-btn .material-symbols-outlined {
+    font-size: 24px;
+    line-height: 1;
+}
+.change-picture .material-symbols-outlined {
+    font-weight: normal;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+.edit-container div {
+}
+.sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.bio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+.account-overview {
+    background: var(--card-bg);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 20px;
+    box-shadow: 0 2px 10px var(--black-08);
+}
+
+.account-overview h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.overview-item {
+    display: flex;
+    padding: 12px;
+    border-radius: 12px;
+    gap: 10px;
+    background: var(--card-bg);
+    border: 1px solid var(--black-08);
+    align-items: center;
+    border-bottom: 1px solid var(--divider);
+}
+.quick-links {
+    display: flex;
+    padding: 12px;
+    border-radius: 12px;
+    gap: 8px;
+    background: var(--card-bg);
+    flex-direction: column;
+    border: 1px solid var(--black-08);
+
+    border-bottom: 1px solid var(--divider);
+}
+.link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.link a,
+.link span {
+    color: var(--reddish);
+}
+.overview-item:last-child {
+    border-bottom: none;
+}
+
+.overview-item p {
+    margin: 2px 0;
+    color: var(--text-muted);
+}
+
+.overview-item span {
+    font-weight: 100;
+}
+
+.status.active {
+    color: var(--status-active);
+}
+.overview-item .material-symbols-outlined {
+    font-size: 32px;
+}
+.profile-layout {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.overview-item p:first-child {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.overview-item p:last-child {
+    font-weight: 600;
+}
+@media (max-width: 768px) {
+    .profile-area {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+    .profile-layout {
+        flex-direction: column;
+    }
+    .main-edit-section {
+        max-width: 100%;
+    }
+    .btn-contain {
+        flex-direction: column;
+    }
+
+    .edit-appy-btn {
+        width: 100%;
+    }
+
+    .profile-edit {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+    }
+    .more-info {
+        width: 100%;
+    }
+    .edit-container {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-edit-section {
+        padding: 12px;
+    }
+    .account-overview,
+    .quick-links {
+        padding: 15px;
+    }
+    .edit {
+        font-size: 0.95rem;
+    }
+    .change-picture {
+        width: 100%;
+    }
+}
+
+  #follower {
+    width: 10px;
+    height: 10px;
+    background-color: var(--dot-blue);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+margin-top: -10px;
+    pointer-events: none; /* Prevents the element from blocking mouse clicks beneath it */
+    will-change: transform;
+animation: 2s color infinite;
+transition: 0.5s background ease-in-out;
+  }
+
+/* This dot only ever moves on `mousemove`, which never fires on touchscreens —
+   without this it gets stuck pulsing colors over whatever content happens to
+   sit at 0,0 on mobile/tablet. Hide it wherever there's no real hover/pointer. */
+@media (hover: none), (pointer: coarse) {
+    #follower {
+        display: none;
+    }
+}
+
+@keyframes color{
+0%{
+background: var(--dot-blue);
+}
+10%{
+background: var(--dot-blue);
+}
+20%{
+background: var(--dot-violet);
+}
+40%{
+background: var(--dot-red);
+}
+60%{
+background: var(--dot-violet);
+}
+70%{
+background: var(--dot-blue);
+}
+80%{
+background: var(--dot-violet);
+}
+90%{
+background: var(--dot-red);
+}
+100%{
+background: var(--dot-violet);
+}
+}
+
+    
+.confirm-box{
+    transform: translateY(10px) scale(.95);
+    opacity: 0;
+    transition: .25s ease;
+}
+
+.confirm-overlay.active .confirm-box{
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+.confirm-overlay.closing{
+    opacity: 0;
+}
+
+.confirm-overlay.closing .confirm-box{
+    transform: translateY(10px) scale(.95);
+    opacity: 0;
+}
+
+
+
+.confirm-overlay{
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:var(--black-35);
+
+    backdrop-filter:blur(3px);
+opacity: 0;
+    visibility: hidden;
+    transition: opacity .25s ease, visibility .25s ease;
+
+    z-index:9999;
+}
+
+/* JS adds this */
+.confirm-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.confirm-modal{
+
+    width:min(92%,380px);
+
+    background:var(--nav);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:
+        0 15px 40px var(--black-15);
+
+    transform:scale(.9);
+
+    transition:.25s ease;
+}
+
+.confirm-overlay.active .confirm-modal{
+    transform:scale(1);
+}
+
+.confirm-icon{
+
+    width:70px;
+    height:70px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:var(--deepbg);
+
+    color:var(--reddish);
+
+    font-size:28px;
+
+    margin-bottom:20px;
+}
+
+.confirm-modal h2{
+
+    color:var(--brownish);
+
+    margin-bottom:10px;
+
+    font-size:24px;
+
+    font-weight:600;
+}
+
+.confirm-modal p{
+
+    color:var(--text-muted);
+
+    line-height:1.6;
+
+    margin-bottom:28px;
+
+    font-size:15px;
+}
+
+.confirm-buttons{
+
+    display:flex;
+
+    gap:12px;
+}
+
+.confirm-buttons button{
+
+    flex:1;
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.25s;
+}
+
+.cancel-btn{
+
+    background:var(--border);
+
+    color:var(--brownish);
+}
+
+.cancel-btn:hover{
+
+    background:var(--cancel-hover);
+}
+
+.save-btn{
+
+    background:var(--reddish);
+
+    color:var(--text-on-accent);
+}
+
+.save-btn:hover{
+
+    background:var(--hover1);
+}
+
+.save-btn:disabled,
+.cancel-btn:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+}
+/* ===========================
+   DARK MODE VARIABLES
+=========================== */
+
+body.dark-mode{
+
+    /* Main backgrounds */
+    --body-bg: #121212;
+    --nav: #1b1b1b;
+    --card-bg: #202020;
+    --deepbg: #2b2b2b;
+
+    /* Text */
+    --text-color: #f2f2f2;
+    --text-muted: #b8b8b8;
+    --brownish: #ffffff;
+    --text-on-accent: #ffffff;
+
+    /* Borders */
+    --border: #3b3b3b;
+    --divider: #3a3a3a;
+    --input-border: #555;
+
+    /* Inputs */
+    --focus-shadow: rgba(229,107,145,.35);
+    --reddish-shadow: rgba(199,77,109,.35);
+
+    /* Cards */
+    --card-bg-translucent: rgba(32,32,32,.95);
+
+    /* Buttons */
+    --cancel-hover: #383838;
+
+    /* Status */
+    --status-active: #47d46e;
+
+    /* Overlay */
+    --black-08: rgba(255,255,255,.08);
+    --black-15: rgba(255,255,255,.15);
+    --black-2: rgba(255,255,255,.20);
+    --black-25: rgba(255,255,255,.25);
+    --black-3: rgba(255,255,255,.30);
+    --black-35: rgba(0,0,0,.65);
+
+}

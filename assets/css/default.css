@@ -1,0 +1,689 @@
+:root {
+    --color1: #e2afbf;
+    --deepbg: #fcebec;
+    --nav: #fdf8f8;
+    --reddish: #dc5c7c;
+    --border: #f7eeef;
+    --brownish: #b59097;
+    /* New Variables */
+    --body-bg: #FEF9FB;
+    --text-color: #2b2b2b;
+    --card-bg: #ffffff;
+
+    --selection-bg: #E56B91;
+    --hover1: #c4415f; /* darker shade of --reddish, used on button hover */
+    --search-border: gray;
+    --text-on-accent: #ffffff; /* white text sitting on colored buttons */
+
+    /* Added: tech portal neon palette (kept constant across themes) */
+    --tech-bg: #021a0e;
+    --tech-green: #00ff66;
+    --tech-border: rgba(0, 255, 102, 0.2);
+    --tech-border-hover: rgba(0, 255, 102, 0.3);
+    --tech-hover-bg: #053b24;
+    --tech-glow-dark: #01130a;
+    --tech-white: #ffffff;
+}
+* {
+  
+    font-family: "Poppins", Sans-Serif;
+}
+*::selection {
+    background: var(--selection-bg);
+    color: var(--card-bg);
+    text-shadow: none;
+}
+
+*::-moz-selection {
+    background: var(--selection-bg);
+    color: var(--card-bg);
+    text-shadow: none;
+}
+body{
+    margin:0;
+    padding:0;
+    background:var(--body-bg);
+    color:var(--text-color);
+    transition:.35s;
+}
+.sidebar {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 30px;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+.right-conner-btn {
+    outline: none;
+    background: var(--deepbg);
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+}
+.cutesy {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    color: var(--reddish);
+    font-size: 2rem !important;
+}
+.line {
+    position: relative;
+    height: 2px;
+}
+
+.line::before,
+.line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 2px;
+    background: var(--color1);
+}
+
+.line::before {
+    left: 0;
+    transform-origin: left;
+    animation: leftLine 2s infinite alternate;
+}
+
+.line::after {
+    right: 0;
+    transform-origin: right;
+    animation: rightLine 2s infinite alternate;
+}
+
+@keyframes leftLine {
+    0% {
+        transform: scaleX(0);
+    }
+    40% {
+        transform: scaleX(1);
+    }
+    60% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(0);
+    }
+}
+@keyframes rightLine {
+    0% {
+        transform: scaleX(0);
+    }
+    40% {
+        transform: scaleX(1);
+    }
+    60% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(0);
+    }
+}
+header {
+    display: flex;
+    flex-direction: row;
+    padding-right: 30px;
+    padding-left: 30px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    box-sizing: border-box;
+    width: 100%;
+}
+.compliment-cutesy {
+    color: var(--brownish);
+    margin-top: -10px;
+    margin-left: 10%;
+}
+.brand-name {
+    flex-shrink: 0;
+}
+.right-conner-options {
+    padding: 15px;
+    display: flex;
+    flex-shrink: 0;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+.search-field {
+    outline: none;
+    border-radius: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--search-border);
+    height: 48px;
+    padding: 5px 40px 5px 25px;
+}
+.active {
+    background: var(--deepbg);
+}
+.search-box {
+    position: relative;
+    flex: 1;
+    max-width: 700px;
+}
+.search-box span {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color1);
+}
+
+.aside-sidebar {
+    margin-left: 30px;
+    background: var(--nav);
+    min-height: 100dvh;
+    width: 290px;
+    align-items: stretch;
+    display: flex;
+    border: 1px solid var(--border);
+    flex-direction: column;
+    justify-content: space-start;
+    gap: 20px;
+}
+main {
+    flex: 1;
+    padding: 35px;
+    box-sizing: border-box;
+}
+
+a {
+    display: block;
+    padding: 15px;
+    border-radius: 10px;
+    color:var(--text-color);
+    text-decoration: none;
+    position: relative;
+}
+a:hover {
+    background: var(--deepbg);
+}
+span .active {
+    background: var(--deepbg);
+    color: var(--reddish);
+    font-weight: 600;
+}
+a {
+    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Adjusts the spacing between the icon and the text */
+}
+.logout {
+    color: var(--reddish);
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+}
+.promo-box {
+    width: 200px;
+    background: var(--deepbg);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+.promo-box img {
+    width: 190px;
+}
+.right-conner-options img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    cursor: pointer;
+}
+.right-conner-options .material-symbols-outlined {
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.right-conner-options .material-symbols-outlined:hover {
+    color: var(--reddish);
+    transform: scale(1.1);
+}
+.invite-btn {
+    width: 80%;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    background: var(--reddish);
+    color: var(--text-on-accent);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.invite-btn:hover {
+    background: var(--hover1);
+    transform: translateY(-2px);
+}
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+main section {
+    border-radius: 15px;
+}
+/* ============================================ */
+/* 🛠️ THE EXACT FIX FOR THE SQUEEZED BUTTON     */
+/* ============================================ */
+.lightning-wrapper {
+    position: relative;
+    width: 100%;       /* 1. Forces the container to match the sidebar width */
+    display: block;    /* 2. Ensures it takes up its own block row */
+    overflow: visible;
+}
+
+/* ============================================ */
+/* ⚡ TECH PORTAL LINK BASE STYLES ⚡ */
+/* ============================================ */
+.sidebar a.tech-portal {
+    background: var(--tech-bg) !important; /* Deep void green */
+    color: var(--tech-green) !important;     /* Neon terminal green */
+    border: 1px solid var(--tech-border);
+    margin: 8px 0;
+    transition: all 0.25s ease-in-out;
+}
+
+/* Match the exact layout behavior of your other sidebar icons */
+.sidebar a.tech-portal .tech-icon {
+    color: var(--tech-green) !important;
+}
+
+/* ============================================ */
+/* ⚡ HOVER HIGH-VOLTAGE & LIGHTNING EFFECTS ⚡ */
+/* ============================================ */
+.sidebar a.tech-portal:hover {
+    background: var(--tech-hover-bg) !important;
+    border-color: var(--tech-green);
+    /* Neon glow projecting outward onto the cutesy background */
+    box-shadow: 0 0 15px  var(--tech-glow-dark), 0 0 30px var(--tech-border);
+    transform: translateX(5px); /* Pops outward slightly */
+}
+
+/* The Lightning Bolt Animation Core */
+.lightning-bolt {
+    display: inline-block;
+    margin-left: auto; /* Forces bolt to sit clean on the right side */
+    font-size: 1.1rem;
+    animation: lightning-strike 2s infinite linear;
+}
+
+/* The Electric Shock Spark Keyframes */
+@keyframes lightning-strike {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0px var(--tech-green)) brightness(1);
+        opacity: 1;
+    }
+    45% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0px var(--tech-green)) brightness(1);
+        opacity: 1;
+    }
+    /* Instant double-flash explosion simulating static crackle */
+    50% {
+        transform: scale(1.3) rotate(-10deg);
+        filter: drop-shadow(0 0 8px var(--tech-green)) brightness(3);
+        opacity: 0.3;
+    }
+    52% {
+        transform: scale(1.1) rotate(5deg);
+        filter: drop-shadow(0 0 12px var(--tech-white)) brightness(5);
+        opacity: 1;
+    }
+    54% {
+        transform: scale(1.3);
+        filter: drop-shadow(0 0 2px var(--tech-green)) brightness(1);
+        opacity: 0.2;
+    }
+    56% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px var(--tech-green)) brightness(3);
+        opacity: 1;
+    }
+}
+/* Relative anchor box container */
+.lightning-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: visible; /* Allows the lightning glow to pop out */
+}
+
+/* ============================================ */
+/* ⚡ THE PHYSICAL ZIGZAG LIGHTNING LINES ⚡ */
+/* ============================================ */
+.bolt-line {
+    position: absolute;
+    background: var(--tech-green);
+    opacity: 0; /* Hidden by default */
+    pointer-events: none; /* Mouse can click straight through it */
+    z-index: 10;
+    mix-blend-mode: screen;
+}
+
+/* Top Horizontal Zigzag Arc */
+.top-bolt {
+    top: -4px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    /* This creates a sharp vector zigzag shape */
+    clip-path: polygon(0% 50%, 15% 20%, 30% 70%, 45% 10%, 65% 80%, 80% 30%, 90% 75%, 100% 50%, 90% 60%, 80% 40%, 65% 90%, 45% 20%, 30% 85%, 15% 35%);
+}
+
+/* Bottom Horizontal Zigzag Arc */
+.bottom-bolt {
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    clip-path: polygon(0% 50%, 20% 70%, 35% 30%, 50% 80%, 70% 20%, 85% 70%, 100% 50%, 85% 60%, 70% 10%, 50% 90%, 35% 20%, 20% 80%);
+}
+
+/* Left Vertical Zigzag Arc */
+.left-bolt {
+    top: 0;
+    left: -4px;
+    width: 8px;
+    height: 100%;
+    clip-path: polygon(50% 0%, 30% 20%, 70% 40%, 20% 55%, 80% 75%, 30% 90%, 50% 100%, 40% 90%, 90% 75%, 10% 55%, 80% 40%, 40% 20%);
+}
+
+/* Right Vertical Zigzag Arc */
+.right-bolt {
+    top: 0;
+    right: -4px;
+    width: 8px;
+    height: 100%;
+    clip-path: polygon(50% 0%, 70% 15%, 30% 35%, 80% 50%, 20% 70%, 70% 85%, 50% 100%, 60% 85%, 10% 70%, 90% 50%, 40% 35%, 80% 15%);
+}
+
+.lightning-wrapper:hover .bolt-line {
+    animation: zigzag-crackle 0.4s infinite steps(2);
+}
+
+@keyframes zigzag-crackle {
+    0%, 100% {
+        opacity: 0;
+        transform: scaleX(1) scaleY(1);
+        filter: drop-shadow(0 0 2px var(--tech-green)) brightness(1);
+    }
+    20% {
+        opacity: 1;
+        /* Flipping axes keeps the lightning completely unpredictable */
+        transform: scaleX(-1) scaleY(1.1);
+        filter: drop-shadow(0 0 6px var(--tech-green)) drop-shadow(0 0 12px var(--tech-white)) brightness(3);
+    }
+    40% {
+        opacity: 0.2;
+        transform: scaleX(1.1) scaleY(-1);
+        filter: drop-shadow(0 0 2px var(--tech-green));
+    }
+    60% {
+        opacity: 1;
+        transform: scaleX(-1.05) scaleY(-1.05);
+        filter: drop-shadow(0 0 8px var(--tech-green)) drop-shadow(0 0 15px var(--tech-green)) brightness(4);
+    }
+    80% {
+        opacity: 0.1;
+        transform: scaleX(1) scaleY(1);
+    }
+}
+/* ============================================ */
+.menu.tech-portal {
+    background: var(--tech-bg) !important;
+    color: var(--tech-green) !important;
+    border: 1px solid var(--tech-border-hover) !important;
+    
+    display: flex !important;       /* Keeps icon and text inline */
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+    transition: all 0.2s ease-in-out;
+
+    /* 🟢 ADD THESE TWO LINES TO FILL THE RED WRAPPER */
+    width: 100% !important;         /* Forces the link to take up all space */
+    box-sizing: border-box !important; /* Prevents padding from breaking layout border */
+}
+
+body.dark-mode{
+    --color1:#8E5FCF;
+    --deepbg:#352A45;
+
+    --nav:#211B2B;
+
+    --reddish:#FF8FAB;
+
+    --border:#3A3048;
+
+    --brownish:#D0C4E5;
+
+    --body-bg:#17141F;
+
+    --text-color:#F5F2FF;
+
+    --card-bg:#241D2E;
+
+}
+
+/* =========================================================
+   NAVBAR / HAMBURGER / RESPONSIVE FIXES
+   ========================================================= */
+
+/* Sticky header so the nav stays reachable while scrolling */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background: var(--body-bg);
+    flex-wrap: wrap;
+    row-gap: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+/* Hamburger button: hidden on desktop, shown on small screens */
+.menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--nav);
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0;
+}
+.menu-toggle:hover {
+    background: var(--deepbg);
+    color: var(--reddish);
+}
+.menu-toggle .material-symbols-outlined {
+    font-size: 26px;
+}
+
+/* Backdrop behind the mobile drawer */
+.sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    border: none;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 70;
+    cursor: pointer;
+}
+
+/* Make sure long names never blow the header out */
+.right-conner-options > span {
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    .menu-toggle { display: inline-flex; }
+
+    header {
+        gap: 10px;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+    .brand-name { flex: 1 1 auto; min-width: 0; }
+    .cutesy { font-size: 1.4rem !important; }
+    .compliment-cutesy {
+        margin-left: 0;
+        font-size: 0.8rem;
+    }
+    /* Search drops to its own full-width row */
+    .search-box {
+        order: 3;
+        flex: 1 0 100%;
+        max-width: 100%;
+    }
+    .search-field { height: 42px; padding: 5px 40px 5px 16px; }
+
+    .right-conner-options {
+        padding: 0;
+        gap: 2px;
+    }
+    .right-conner-options > span { display: none; }        /* username label */
+    .right-conner-options img { width: 36px; height: 36px; }
+    .right-conner-options .material-symbols-outlined { font-size: 24px; }
+
+    /* Sidebar becomes an off-canvas drawer */
+    .dashboard-container { display: block; }
+
+    .aside-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        margin-left: 0;
+        width: min(280px, 85vw);
+        max-width: 85vw;
+        min-height: 0;
+        height: 100dvh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        z-index: 80;
+        transform: translateX(-100%);
+        transition: transform 0.28s ease;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
+    }
+    body.sidebar-open .aside-sidebar { transform: translateX(0); }
+    body.sidebar-open .sidebar-backdrop { display: block; }
+    body.sidebar-open { overflow: hidden; }
+
+    .sidebar { padding-right: 0; padding-left: 10px; margin-top: 16px; }
+    .sidebar a { font-size: 1.05rem; padding: 12px; }
+
+    main {
+        padding: 16px;
+        width: 100%;
+        min-width: 0;
+    }
+    main section { min-width: 0; }
+    .promo-box { width: 85%; margin-bottom: 20px; }
+    .promo-box img { width: 100%; height: auto; }
+}
+
+/* iPhone SE / very small phones */
+@media (max-width: 420px) {
+    header { padding-left: 10px; padding-right: 10px; }
+    .cutesy { font-size: 1.2rem !important; }
+    .compliment-cutesy { display: none; }
+    main { padding: 12px; }
+    .menu-toggle { width: 40px; height: 40px; }
+}
+
+/* Never let content or images force a horizontal scrollbar */
+html, body { max-width: 100%; overflow-x: hidden; }
+img { max-width: 100%; }
+
+/* =========================================================
+   DARK MODE: form controls
+   ========================================================= */
+body.dark-mode {
+    color-scheme: dark;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select,
+body.dark-mode .input,
+body.dark-mode .edit,
+body.dark-mode .search-field {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--input-border, var(--border));
+    -webkit-text-fill-color: var(--text-color);
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: var(--brownish);
+    opacity: 0.7;
+}
+
+body.dark-mode select option {
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus,
+body.dark-mode .input:focus,
+body.dark-mode .edit:focus {
+    border-color: var(--reddish);
+    box-shadow: 0 0 0 3px var(--focus-shadow, rgba(255, 143, 171, 0.25));
+}
+
+/* Autofill was painting inputs white in dark mode */
+body.dark-mode input:-webkit-autofill,
+body.dark-mode input:-webkit-autofill:hover,
+body.dark-mode input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-color);
+    -webkit-box-shadow: 0 0 0 1000px var(--card-bg) inset;
+    caret-color: var(--text-color);
+}
+
+/* Search clear button + checkbox/radio accents */
+body.dark-mode input[type="search"]::-webkit-search-cancel-button { filter: invert(1); }
+body.dark-mode input[type="checkbox"],
+body.dark-mode input[type="radio"] { accent-color: var(--reddish); }
+
+/* File pickers ("Choose File" chip) */
+body.dark-mode input[type="file"] { color: var(--text-color); }
+body.dark-mode input[type="file"]::file-selector-button {
+    background: var(--deepbg);
+    color: var(--text-color);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
